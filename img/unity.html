@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewBridge Community</title>
+    
+    <!-- Подключение Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --olive-dark: #2a342a;
+            --olive-medium: #424e41;
+            --olive-light: #526150;
+            --milk-dark: #e8e2d5;
+            --milk-light: #f5f2eb;
+            --milk-yellow: #f4ecd8;
+            --president-yellow: #ffdf84;
+            --gold: #c5a880;
+            --gold-light: #dfcaa8;
+            --text-dark: #1a221a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--milk-dark);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Декоративная рамка */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Навигация */
+        header {
+            background-color: var(--olive-dark);
+            border-bottom: 2px solid var(--gold);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-family: "Instrument Serif", serif;
+            color: var(--milk-light);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--milk-light);
+            text-decoration: none;
+            font-family: "Instrument Serif", serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Главный экран (Hero) */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--milk-dark) 0%, var(--milk-light) 100%);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+        }
+
+        .hero h1 {
+            font-family: "Instrument Serif", serif;
+            font-size: 3.5rem;
+            color: var(--olive-dark);
+            margin-bottom: 5px;
+        }
+
+        .hero p {
+            font-family: "Instrument Serif", serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--olive-medium);
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: "Instrument Serif", serif;
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--olive-dark);
+            margin: 50px 0 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '✧';
+            display: block;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: -5px;
+        }
+
+        /* Секция команды (обновленная под второй дизайн) */
+        .team-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .grid-style-4 {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .card-style-4 {
+            display: flex;
+            background-color: var(--milk-yellow);
+            border: 2px solid var(--gold);
+            border-radius: 14px;
+            overflow: hidden;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-style-4.president-card {
+            background-color: var(--president-yellow);
+        }
+
+        .card-style-4:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-style-4 img {
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            border-right: 2px solid var(--gold);
+            flex-shrink: 0;
+        }
+
+        .content-style-4 {
+            padding: 22px 28px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .content-style-4 h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .content-style-4 p.role {
+            color: var(--olive-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .content-style-4 span.desc {
+            color: var(--olive-medium);
+            font-size: 1.1rem;
+            font-style: italic;
+            font-family: 'Instrument Serif', serif;
+            display: block;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.82rem;
+            color: var(--olive-medium);
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 6px;
+            border-top: 1px dashed var(--gold);
+            padding-top: 6px;
+        }
+
+        .contact-info a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Секция ивентов */
+        .events-section {
+            background-color: var(--olive-dark);
+            color: var(--milk-light);
+            padding: 60px 20px;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .events-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .event-item {
+            background-color: var(--olive-medium);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .event-item:hover {
+            background-color: rgba(66, 78, 65, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .event-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            min-width: 140px;
+            border-right: 1px solid rgba(197, 168, 128, 0.3);
+            padding-right: 20px;
+        }
+
+        .event-status {
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .event-status.completed {
+            background-color: rgba(76, 175, 80, 0.15);
+            color: #81c784;
+            border: 1px solid #81c784;
+        }
+
+        .event-status.upcoming {
+            background-color: rgba(197, 168, 128, 0.15);
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+        }
+
+        .event-middle {
+            flex-grow: 1;
+        }
+
+        .event-middle h4 {
+            font-family: "Instrument Serif", serif;
+            font-size: 1.6rem;
+            color: var(--milk-light);
+            margin-bottom: 3px;
+        }
+
+        .event-middle span {
+            font-size: 0.85rem;
+            color: var(--milk-dark);
+            opacity: 0.85;
+        }
+
+        .event-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold-light);
+            background: rgba(42, 52, 42, 0.6);
+            border: 1px solid var(--gold);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tg-link:hover {
+            background-color: var(--gold);
+            color: var(--olive-dark);
+            box-shadow: 0 4px 12px rgba(197, 168, 128, 0.3);
+        }
+
+        /* Проекты */
+        .projects-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--milk-light);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            font-family: "Instrument Serif", serif;
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            font-size: 0.9rem;
+            color: var(--olive-medium);
+            line-height: 1.5;
+        }
+
+        /* Партнеры / Коллаборации */
+        .partners-section {
+            background-color: var(--olive-medium);
+            padding: 60px 20px;
+            color: var(--milk-light);
+            text-align: center;
+        }
+
+        .partners-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            align-items: center;
+        }
+
+        .partner-badge {
+            background-color: var(--olive-dark);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: "Instrument Serif", serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .partner-badge:hover {
+            background-color: var(--gold);
+            color: var(--olive-dark);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--olive-dark);
+            color: var(--milk-light);
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .footer-socials {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            color: var(--gold);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--milk-light);
+        }
+
+        .footer-motto {
+            font-family: "Instrument Serif", serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-top: 10px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+
+            .event-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .event-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+                width: 100%;
+                padding-right: 0;
+                padding-bottom: 12px;
+            }
+
+            .event-right {
+                width: 100%;
+            }
+
+            .tg-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .card-style-4 { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            .card-style-4 img { 
+                width: 100%; 
+                height: 220px; 
+                border-right: none; 
+                border-bottom: 2px solid var(--gold); 
+            }
+            .content-style-4 {
+                padding: 20px;
+            }
+            .contact-info {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo-text">NEWBRIDGE</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#team">КОМАНДА</a></li>
+                    <li><a href="#events">СОБЫТИЯ</a></li>
+                    <li><a href="#projects">ПРОЕКТЫ</a></li>
+                    <li><a href="#partners">КОЛЛАБОРАЦИИ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный блок -->
+    <section class="hero">
+        <h1>NewBridge Community</h1>
+        <p>We unite people of different backgrounds</p>
+    </section>
+
+    <!-- Секция Команды -->
+    <section id="team" class="team-section">
+        <h2 class="section-title">Наша Команда</h2>
+        <div class="grid-style-4">
+            
+            <!-- 1. Канцлер -->
+            <div class="card-style-4 president-card">
+                <img src="./img/image2.png" alt="Канцлер">
+                <div class="content-style-4">
+                    <h3>Канцлер</h3>
+                    <p class="role">Chancellor</p>
+                    <span class="desc">«Руководство и стратегическое развитие NewBridge Community»</span>
+                    <div class="contact-info">
+                        <span>📞 +9989 0082 6808</span>
+                        <span>📞 +9985 0700 8268</span>
+                        <span>✈️ <a href="https://t.me/Asian_ZlatoVlaska" target="_blank">@Asian_ZlatoVlaska</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Abdullayev Muhammadyusuf -->
+            <div class="card-style-4">
+                <img src="./img/image.png" alt="Abdullayev Muhammadyusuf">
+                <div class="content-style-4">
+                    <h3>Abdullayev Muhammadyusuf</h3>
+                    <p class="role">Head of Media Team / Media Director</p>
+                    <span class="desc">Responsible for managing and developing NewBridge's media presence, content creation, social media, and PR strategy. Motivated and multilingual leader passionate about strategic communication.</span>
+                    <div class="contact-info">
+                        <span>📞 +998 91 292 22 71</span>
+                        <span>✈️ <a href="https://t.me/Abdullayev_m08" target="_blank">@Abdullayev_m08</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Sipatdinov Alpamis -->
+            <div class="card-style-4">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" alt="Sipatdinov Alpamis">
+                <div class="content-style-4">
+                    <h3>Sipatdinov Alpamis</h3>
+                    <p class="role">Assistant & Mobile Videographer</p>
+                    <span class="desc">Personal assistant to Media Director. Responsible for capturing high-quality mobile photos/videos, visual content creation, and media coverage of events.</span>
+                    <div class="contact-info">
+                        <span>📞 +998 91 292 22 71</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- План ивентов -->
+    <section id="events" class="events-section">
+        <h2 class="section-title" style="color: var(--milk-light);">Планы Ивентов</h2>
+        <div class="events-container">
+            
+            <!-- Ивент 1 -->
+            <div class="event-item">
+                <div class="event-left">
+                    <span class="event-status completed">Проведено ✅</span>
+                </div>
+                <div class="event-middle">
+                    <h4>Трип в Самарканд</h4>
+                    <span>Коллаборация с Центром Молодёжи</span>
+                </div>
+                <div class="event-right">
+                    <a href="https://t.me/your_channel" target="_blank" class="tg-link">
+                        <i class="fab fa-telegram"></i> Детали в Telegram
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ивент 2 -->
+            <div class="event-item">
+                <div class="event-left">
+                    <span class="event-status upcoming">Предстоящее</span>
+                </div>
+                <div class="event-middle">
+                    <h4>Хеллоуин</h4>
+                    <span>Приближённо к культуре Узбекистана</span>
+                </div>
+                <div class="event-right">
+                    <a href="https://t.me/your_channel" target="_blank" class="tg-link">
+                        <i class="fab fa-telegram"></i> Детали в Telegram
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ивент 3 -->
+            <div class="event-item">
+                <div class="event-left">
+                    <span class="event-status upcoming">Предстоящее</span>
+                </div>
+                <div class="event-middle">
+                    <h4>Movie Night</h4>
+                    <span>Уютный киновечер для сообщества</span>
+                </div>
+                <div class="event-right">
+                    <a href="https://t.me/your_channel" target="_blank" class="tg-link">
+                        <i class="fab fa-telegram"></i> Детали в Telegram
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ивент 4 -->
+            <div class="event-item">
+                <div class="event-left">
+                    <span class="event-status upcoming">Предстоящее</span>
+                </div>
+                <div class="event-middle">
+                    <h4>Новый Год</h4>
+                    <span>В нашем уникальном стиле в коллаборации с UWED</span>
+                </div>
+                <div class="event-right">
+                    <a href="https://t.me/your_channel" target="_blank" class="tg-link">
+                        <i class="fab fa-telegram"></i> Детали в Telegram
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Успешные проекты -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Наши проекты на этот год</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1590059301980-3e2f0a1c1d0f?w=500" alt="Трип в Самарканд">
+                <div class="project-content">
+                    <h3>1. Трип в Самарканд</h3>
+                    <p>Культурно-познавательная поездка в один из древнейших городов. Проводится в эксклюзивной коллаборации с Центром Молодёжи.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1509557965875-b88c97052f0e?w=500" alt="Хеллоуин">
+                <div class="project-content">
+                    <h3>2. Хеллоуин</h3>
+                    <p>Адаптированное тематическое мероприятие: переосмысление традиционного праздника с акцентом на культуру и колорит Узбекистана.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500" alt="Movie Night">
+                <div class="project-content">
+                    <h3>3. Movie night в конце ноября</h3>
+                    <p>Атмосферный киновечер в кругу единомышленников с просмотром и последующим обсуждением фильма.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=500" alt="Новый Год">
+                <div class="project-content">
+                    <h3>4. Новый Год</h3>
+                    <p>Масштабное празднование в уникальном стиле NewBridge, организованное в коллаборации с UWED.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Коллаборации / Партнеры -->
+    <section id="partners" class="partners-section">
+        <h2 class="section-title" style="color: var(--milk-light);">Коллаборации</h2>
+        <div class="partners-grid">
+            <div class="partner-badge">Центр Молодёжи</div>
+            <div class="partner-badge">UWED</div>
+            <div class="partner-badge">Design Studio</div>
+            <div class="partner-badge">Student Union</div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="logo-text" style="margin-bottom: 10px;">NEWBRIDGE</div>
+        <p>email@gmail.com | University Campus, Street</p>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="t.me/NewBridge_Official" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p class="footer-motto">We unite people of different backgrounds</p>
+    </footer>
+
+</body>
+</html>
